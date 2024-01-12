@@ -1,0 +1,33 @@
+import React from 'react';
+import styles from './postUser.module.css';
+import { getUser } from '@/lib/data';
+
+// FETCH DATA WITH API
+// const getData = async (userId) => {
+//   const res = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`, {
+//     cache: 'no-store',
+//   });
+//   if (!res.ok) {
+//     throw new Error('Failed to fetch data');
+//   }
+//   return res.json();
+// };
+
+const PostUser = async ({ userId }) => {
+  // FETCH DATA WITH API
+  // const user = await getData(userId);
+  // console.log('userid in PostUser' + userId);
+  // const parsedUserId = +userId;
+  const user = await getUser(userId);
+  console.log('user in PostUser' + user);
+
+  return (
+    <div className={styles.container}>
+      <span className={styles.title}>Author</span>
+      <span className={styles.username}>{user.username}</span>
+      {/* <span className={styles.username}>AjayS</span> */}
+    </div>
+  );
+};
+
+export default PostUser;
