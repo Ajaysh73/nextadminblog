@@ -9,7 +9,7 @@
   height: calc(100vh - 200px);
 }
 .img {
-  object-fit: contain;
+  object-fit: conta;
 }
 .textContainer {
   display: flex;
