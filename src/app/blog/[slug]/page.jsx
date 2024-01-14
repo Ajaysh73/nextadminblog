@@ -5,19 +5,19 @@ import PostUser from '@/components/postUser/PostUser';
 import { getPost } from '@/lib/data';
 
 // FETCH DATA WITH API
-// const getData = async (slug) => {
-//   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`, {
-//     cache: 'no-store',
-//   });
-//   if (!res.ok) {
-//     throw new Error('Failed to fetch data');
-//   }
-//   return res.json();
-// };
+const getData = async (slug) => {
+  const res = await fetch(`http://localhost:3000/api/blog/${slug}`, {
+    cache: 'no-store',
+  });
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+  return res.json();
+};
 
 export const generateMetadata = async ({ params }) => {
   const slug = params.slug;
-  const post = await getPost(slug);
+  const post = await getData(slug);
   return {
     title: post.title,
     description: post.desc,
@@ -27,12 +27,13 @@ const SinglePostPage = async ({ params }) => {
   const slug = params.slug;
   console.log(slug);
   // console.log(slug + 'in SinglePostPage');
+
   // FETCH DATA WITH API
-  // const post = await getData(slug);
+  const post = await getData(slug);
+
   // const parsedIntSlug = +slug;
   // console.log(parsedIntSlug);
-  const post = await getPost(slug);
-  console.log(post);
+  // const post = await getPost(slug);
   console.log(post);
   return (
     <div className={styles.container}>

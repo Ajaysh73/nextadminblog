@@ -24,11 +24,11 @@ export const deletePost = async (formData) => {
   // const title = formData.get('title');
   // const desc = formData.get('desc');
   // const slug = formData.get('slug');
-  const { id } = Object.fromEntries(formData);
-
+  const { postId } = Object.fromEntries(formData);
+  console.log(postId);
   try {
     connectToDb();
-    await Post.findByIdAndDelete(id);
+    await Post.findByIdAndDelete(postId);
     console.log('Post Deleted!');
     revalidatePath('/blog');
   } catch (error) {
