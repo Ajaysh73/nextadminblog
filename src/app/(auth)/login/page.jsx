@@ -6,8 +6,6 @@ import React from 'react';
 
 const LoginPage = async () => {
   const session = await auth();
-  console.log('session', session);
-
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>

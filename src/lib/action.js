@@ -88,6 +88,9 @@ export const login = async (prevState, formData) => {
     await signIn('credentials', { username, password });
   } catch (error) {
     console.log(error);
-    return { error: 'Something went wrong' };
+    if (error.message.includes('CredentialsSignin')) {
+      return { error: 'Wrong Credentials' };
+    }
+    throw error;
   }
 };

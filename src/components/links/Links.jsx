@@ -28,23 +28,21 @@ const Links = ({ session }) => {
   const [open, setOpen] = useState(false);
 
   // TEMPORARY
-  // console.log(session);
-  const isAdmin = true;
+  console.log('from links', session);
+  // const isAdmin = true;
   return (
     <div className={styles.container}>
       <div className={styles.links}>
         {links.map((link) => (
           <NavLink item={link} key={link.title} />
         ))}
-        {session ? (
-          isAdmin && (
-            <>
-              <NavLink item={{ title: 'Admin', path: '/admin' }} />
-              <form action={handleLogout}>
-                <button className={styles.logout}>Logout</button>
-              </form>
-            </>
-          )
+        {session?.user ? (
+          <>
+            {session.user?.isAdmin && <NavLink item={{ title: 'Admin', path: '/admin' }} />}
+            <form action={handleLogout}>
+              <button className={styles.logout}>Logout</button>
+            </form>
+          </>
         ) : (
           <NavLink item={{ title: 'Login', path: '/login' }} />
         )}

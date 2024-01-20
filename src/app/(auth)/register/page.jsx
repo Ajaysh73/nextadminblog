@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './register.module.css';
-import { register } from '@/lib/action';
 import RegisterForm from '@/components/registerForm/registerForm';
 const RegisterPage = () => {
   return (
