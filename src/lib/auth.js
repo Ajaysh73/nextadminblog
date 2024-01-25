@@ -3,7 +3,7 @@ import GitHub from 'next-auth/providers/github';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { connectToDb } from './utils';
 import { User } from './models';
-import credentials from 'next-auth/providers/credentials';
+// import credentials from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import { authConfig } from './auth.config';
 

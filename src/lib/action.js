@@ -9,11 +9,11 @@ export const addPost = async (prevState, formData) => {
   // const title = formData.get('title');
   // const desc = formData.get('desc');
   // const slug = formData.get('slug');
-  const { title, desc, slug, userId } = Object.fromEntries(formData);
+  const { title, desc, slug, img, userId } = Object.fromEntries(formData);
 
   try {
     connectToDb();
-    const newPost = Post({ title, desc, slug, userId });
+    const newPost = Post({ title, desc, slug, img, userId });
     await newPost.save();
     console.log('New Post Added!');
     revalidatePath('/blog');
@@ -27,6 +27,7 @@ export const deletePost = async (formData) => {
   // const desc = formData.get('desc');
   // const slug = formData.get('slug');
   const { postId } = Object.fromEntries(formData);
+  console.log('in Delete Post');
   console.log(postId);
   try {
     connectToDb();
@@ -124,7 +125,6 @@ export const deleteUser = async (formData) => {
     await User.findByIdAndDelete(id);
     console.log('deleted  from db');
     revalidatePath('/admin');
-    await newUser.save();
   } catch (error) {
     console.log(error);
     return { error: 'Something went wrong' };

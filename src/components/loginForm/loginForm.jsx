@@ -1,14 +1,14 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './loginForm.module.css';
-import { login, register } from '@/lib/action';
+import { login } from '@/lib/action';
 import { useFormState } from 'react-dom';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 const LoginForm = () => {
   const [state, formAction] = useFormState(login, undefined);
-  const router = useRouter();
+  // const router = useRouter();
   //   useEffect(() => {
   //     state?.success && router.push('/login');
   //   }, [state?.success, router]);
@@ -18,7 +18,7 @@ const LoginForm = () => {
       <input type='password' placeholder='password' name='password' />
       <button>Login</button>
       {state?.error}
-      <Link href='/login'>
+      <Link href='/register'>
         {"Don't have an account?"} <b>Register</b>
       </Link>
     </form>
