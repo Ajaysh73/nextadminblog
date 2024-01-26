@@ -16,6 +16,7 @@ export const addPost = async (prevState, formData) => {
     const newPost = Post({ title, desc, slug, img, userId });
     await newPost.save();
     revalidatePath('/blog');
+    revalidatePath('/admin');
   } catch (error) {
     console.log('Something went wrong saving post!', error.message);
   }
@@ -30,6 +31,7 @@ export const deletePost = async (formData) => {
     connectToDb();
     await Post.findByIdAndDelete(postId);
     revalidatePath('/blog');
+    revalidatePath('/admin');
   } catch (error) {
     console.log('Something went wrong saving post!', error.message);
   }
