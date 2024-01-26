@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './blog.module.css';
 import PostCard from '@/components/postCard/postCard';
 import { getApiUrl } from '@/lib/utils';
-// import { getPosts } from '@/lib/data';
 
 // FETCH DATA WITH API
 const getData = async () => {
