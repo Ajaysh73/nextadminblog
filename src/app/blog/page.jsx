@@ -9,7 +9,8 @@ const getData = async () => {
   const apiUrl = getApiUrl(`/api/blog`);
   console.log(apiUrl);
   // const res = await fetch('http://localhost:3000/api/blog', { cache: 'no-store' });
-  const res = await fetch(apiUrl, { cache: 'no-store' });
+  // const res = await fetch(apiUrl, { cache: 'no-store' });
+  const res = await fetch(`${apiUrl}?t=${Date.now()}`, { cache: 'no-store' });
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
