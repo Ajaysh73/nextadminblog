@@ -15,7 +15,6 @@ export const addPost = async (prevState, formData) => {
     connectToDb();
     const newPost = Post({ title, desc, slug, img, userId });
     await newPost.save();
-    console.log('New Post Added!');
     revalidatePath('/blog');
   } catch (error) {
     console.log('Something went wrong saving post!', error.message);
@@ -27,12 +26,9 @@ export const deletePost = async (formData) => {
   // const desc = formData.get('desc');
   // const slug = formData.get('slug');
   const { postId } = Object.fromEntries(formData);
-  console.log('in Delete Post');
-  console.log(postId);
   try {
     connectToDb();
     await Post.findByIdAndDelete(postId);
-    console.log('Post Deleted!');
     revalidatePath('/blog');
   } catch (error) {
     console.log('Something went wrong saving post!', error.message);
@@ -59,7 +55,6 @@ export const register = async (prevState, formData) => {
 
     const user = await User.findOne({ username });
     if (user) {
-      console.log('Username already exists!');
       return { error: 'Username already exists!' };
     }
     const salt = await bcrypt.genSalt(10);
@@ -73,7 +68,6 @@ export const register = async (prevState, formData) => {
     });
 
     await newUser.save();
-    console.log('saved to db');
 
     return { success: true };
   } catch (err) {
@@ -123,7 +117,6 @@ export const deleteUser = async (formData) => {
     connectToDb();
     await Post.deleteMany({ userId: id });
     await User.findByIdAndDelete(id);
-    console.log('deleted  from db');
     revalidatePath('/admin');
   } catch (error) {
     console.log(error);

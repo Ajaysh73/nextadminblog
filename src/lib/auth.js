@@ -41,7 +41,6 @@ export const {
       async authorize(credentials) {
         try {
           const user = await login(credentials);
-          console.log('user', user);
           return user;
         } catch (error) {
           return null;
@@ -51,13 +50,11 @@ export const {
   ],
   callbacks: {
     async signIn({ user, account, profile }) {
-      console.log(user);
       if (account.provider === 'github') {
         connectToDb();
         try {
           const user = await User.findOne({ email: profile.email });
           if (!user) {
-            console.log(profile.email, profile.login, profile.avatar_url);
             const newUser = new User({
               username: profile.login,
               email: profile.email,

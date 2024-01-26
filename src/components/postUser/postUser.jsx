@@ -20,7 +20,6 @@ const PostUser = async ({ userId }) => {
   // console.log('userid in PostUser' + userId);
   // const parsedUserId = +userId;
   const user = await getUser(userId);
-  console.log('user in PostUser' + user);
 
   return (
     <div className={styles.container}>

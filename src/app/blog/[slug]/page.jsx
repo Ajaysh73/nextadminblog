@@ -1,11 +1,16 @@
 import React, { Suspense } from 'react';
 import styles from './singlePost.module.css';
 import Image from 'next/image';
-import PostUser from '@/components/postUser/PostUser';
+// import PostUser from '@/components/postUser/PostUser';
+
+import PostUser from '@/components/postUser/postUser';
+import { getApiUrl } from '@/lib/utils';
 
 // FETCH DATA WITH API
 const getData = async (slug) => {
-  const res = await fetch(`http://localhost:3000/api/blog/${slug}`, {
+  const apiUrl = getApiUrl(`/api/blog/${slug}`);
+  // const res = await fetch(`http://localhost:3000/api/blog/${slug}`, {
+  const res = await fetch(apiUrl, {
     cache: 'no-store',
   });
   if (!res.ok) {
@@ -24,8 +29,6 @@ export const generateMetadata = async ({ params }) => {
 };
 const SinglePostPage = async ({ params }) => {
   const slug = params.slug;
-  console.log(slug);
-  // console.log(slug + 'in SinglePostPage');
 
   // FETCH DATA WITH API
   const post = await getData(slug);
@@ -33,7 +36,6 @@ const SinglePostPage = async ({ params }) => {
   // const parsedIntSlug = +slug;
   // console.log(parsedIntSlug);
   // const post = await getPost(slug);
-  console.log(post);
   return (
     <div className={styles.container}>
       {post.img && (
