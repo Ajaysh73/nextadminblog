@@ -14,13 +14,14 @@ const getData = async () => {
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
+  console.log(res.json());
   return res.json();
 };
 
 const BlogPage = async () => {
   // FETCH DATA WITH API
   const posts = await getData();
-
+  console.log(posts);
   // FETCH DATA WITH DATABASE data.js
   // const posts = await getPosts();
   return (
